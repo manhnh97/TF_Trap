@@ -26,9 +26,9 @@ if (reg1.test($request.url)) {
   $prefs.setValueForKey(session_digest, "session_digest");
   $prefs.setValueForKey(request_id, "request_id");
   if ($prefs.valueForKey("request_id") !== null) {
-    $notify("TestFlight自动加入", "信息获取成功", "");
+    $notify("Tự động tham gia TF(s)", "Đã lấy thông tin", "");
   } else {
-    $notify("TestFlight自动加入", "信息获取失败", "请添加testflight.apple.com");
+    $notify("Tự động tham gia TF(s)", "Không thể lấy thông tin", "Cần thêm testflight.apple.com");
   }
   $done({});
 } else if (reg2.test($request.url)) {
@@ -44,7 +44,7 @@ if (reg1.test($request.url)) {
     appId = arr.join(",");
   }
   $prefs.setValueForKey(appId, "APP_ID");
-  $notify("TestFlight自动加入", `已添加APP_ID: ${id}`, `当前ID: ${appId}`);
+  $notify("Tự động tham gia TF(s)", `Đã thêm APP_ID: ${id}`, `ID còn lại: ${appId}`);
   $done({});
 }
 
