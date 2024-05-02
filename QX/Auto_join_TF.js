@@ -54,9 +54,9 @@ function autoPost(ID) {
               let jsonBody = JSON.parse(body);
               $notify(jsonBody.data.name, "đã tham gia thành công", "");
               console.log(jsonBody.data.name + " đã tham gia thành công");
-              // ids = $prefs.valueForKey("APP_ID").split(",");
+              ids = $prefs.valueForKey("APP_ID").split(",");
               // ids = ids.filter((ids) => ids !== ID);
-              // $prefs.setValueForKey(ids.toString(), "APP_ID");
+              $prefs.setValueForKey(ids.toString(), "APP_ID");
               resolve();
             });
           }
