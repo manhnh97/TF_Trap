@@ -5,7 +5,7 @@
 !(async () => {
   ids = $prefs.valueForKey("APP_ID");
   if (ids == "") {
-    $notify("所有TF已加入完毕", "请手动关闭", "");
+    $notify("APP_ID là rỗng, cần thêm APP_ID mới", "Đóng App thôi", "");
     $done();
   } else {
     ids = ids.split(",");
@@ -37,8 +37,8 @@ function autoPost(ID) {
           ids = $prefs.valueForKey("APP_ID").split(",");
           ids = ids.filter((ids) => ids !== ID);
           $prefs.setValueForKey(ids.toString(), "APP_ID");
-          console.log(ID + " " + "不存在该TF，已自动删除该APP_ID");
-          $notify(ID, "不存在该TF", "已自动删除该APP_ID");
+          console.log(ID + " " + "không tồn tại và đã xoá APP_ID đó");
+          $notify(ID, "TF không tồn tại", "đã xoá APP_ID đó");
           resolve();
         } else {
           let jsonData = JSON.parse(data);
@@ -52,8 +52,8 @@ function autoPost(ID) {
             $task.fetch({ url: testurl + ID + "/accept", method: "POST", headers: header }).then((res) => {
               const { body } = res;
               let jsonBody = JSON.parse(body);
-              $notify(jsonBody.data.name, "TestFlight加入成功", "");
-              console.log(jsonBody.data.name + " TestFlight加入成功");
+              $notify(jsonBody.data.name, "đã tham gia thành công", "");
+              console.log(jsonBody.data.name + " đã tham gia thành công");
               ids = $prefs.valueForKey("APP_ID").split(",");
               ids = ids.filter((ids) => ids !== ID);
               $prefs.setValueForKey(ids.toString(), "APP_ID");
@@ -66,7 +66,7 @@ function autoPost(ID) {
         if (error == "The request timed out.") {
           resolve();
         } else {
-          $notify("自动加入TF", error, "");
+          $notify("Tự động tham gia TF: ", error, "");
           console.log(ID + " " + error);
           resolve();
         }
