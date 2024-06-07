@@ -170,7 +170,7 @@ class i {
         "Content-Type": "application/json",
       },
     };
-    $http.post(options);
+    this.log("Sending Telegram message: " + a);
   }
   static removeItem(i) {
     let a = !1;
